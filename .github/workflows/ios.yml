@@ -102,10 +102,7 @@ jobs:
         
       - name: Set GTAR variable
         run: echo "export GTAR=$(brew --prefix)/bin/gtar" >> $GITHUB_ENV
-
-      - name: Configure with CMake
-        run: cmake -S . -B build -DCMAKE_COMMAND=gtar
-
+        
       - name: Configure with CMake
         run: |
           cmake -S . -B build -DQT_HOST_PATH=/Users/runner/work/_temp/Qt/6.6.3/host
