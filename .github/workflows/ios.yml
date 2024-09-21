@@ -54,6 +54,13 @@ jobs:
           brew update
           brew install cmake ninja ccache
 
+      - name: Install libarchive
+        run: brew install libarchive
+
+      - name: Clean up build directory
+        run: |
+          rm -rf shadow_build_dir
+
       - name: Set Up Cache
         uses: hendrikmuhs/ccache-action@v1.2
         with:
