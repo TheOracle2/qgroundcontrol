@@ -97,6 +97,15 @@ jobs:
 
       - run: mkdir ${{ runner.temp }}/shadow_build_dir
 
+      - name: Install GNU tar
+        run: brew install gnu-tar
+        
+      - name: Set GTAR variable
+        run: echo "export GTAR=$(brew --prefix)/bin/gtar" >> $GITHUB_ENV
+
+      - name: Configure with CMake
+        run: cmake -S . -B build -DCMAKE_COMMAND=gtar
+
       - name: Configure
         working-directory: ${{ runner.temp }}/shadow_build_dir
         run: ${{ env.QT_ROOT_DIR }}/bin/qt-cmake -S ${{ github.workspace }} -B . -G Ninja
@@ -113,3 +122,5 @@ jobs:
         with:
           name: ${{ env.ARTIFACT }}
           path: ${{ runner.temp }}/shadow_build_dir/*.app
+
+      
