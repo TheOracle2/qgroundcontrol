@@ -106,6 +106,10 @@ jobs:
       - name: Configure with CMake
         run: cmake -S . -B build -DCMAKE_COMMAND=gtar
 
+      - name: Configure with CMake
+        run: |
+          cmake -S . -B build -DQT_HOST_PATH=/Users/runner/work/_temp/Qt/6.6.3/host
+
       - name: Configure
         working-directory: ${{ runner.temp }}/shadow_build_dir
         run: ${{ env.QT_ROOT_DIR }}/bin/qt-cmake -S ${{ github.workspace }} -B . -G Ninja
